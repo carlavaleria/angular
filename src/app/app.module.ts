@@ -17,6 +17,7 @@ import { CursoListarComponent } from './curso-listar/curso-listar.component';
     FormsModule,
     HttpClientModule
   ],
+  exports:[FormsModule],
   providers: [],
   bootstrap: [AppComponent]
 })
