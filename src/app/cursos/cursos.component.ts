@@ -9,25 +9,50 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CursosComponent implements OnInit {
  
-
-
+  
+    cursos: any = []; 
     nome:string = '';
     duracao:string= '';
+    camposlimpos: string = '';
 
-  constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { }
  
     ngOnInit(){
-
+    return this.listarCursos();
     }
-
-    onSubmit(form){
-      //console.log(this.nome);
-      //console.log(this.nome);
+    
+    adicionarCurso(form): void{
       this.http.get
       ('http://localhost:8080/adicionarCursos/'+this.nome+'/'+this.duracao)
       .subscribe(
         data => {
+
+          this.cursos = data;
           console.log(data);
+          this.nome = this.camposlimpos;
+          this.duracao = this.camposlimpos;
+        }
+      );
+    }
+
+    listarCursos(): void{
+      this.http.get
+      ('http://localhost:8080/cursos')
+      .subscribe(
+        data => {
+          this.cursos = (data);
+        }
+      );
+    }
+
+    deleteCurso(id): void{
+
+      this.http.delete
+      ('http://localhost:8080/deletarCursos/'+id)
+      .subscribe(
+        data => {
+          this.cursos = (data);
+
         }
       );
     }

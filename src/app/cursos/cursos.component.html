@@ -2,7 +2,7 @@
     <div class="panel-heading"><h2>Adicionar Curso</h2></div>
     <div class="panel-body">
       
-  <form class="form-horizontal" #f="ngForm" (ngSubmit)="onSubmit(f)" >
+  <form class="form-horizontal" #f="ngForm" (ngSubmit)="adicionarCurso(f)" >
       <div class="form-group">
         <label for="nome" class="col-sm-4 control-label"><h3>Curso: </h3></label>
         <div class="col-sm-4">
@@ -24,3 +24,32 @@
     </form>
     </div>
   </div>
+
+  <div class="panel panel-default">
+      <div class="panel-heading"><h2>Lista de Cursos</h2></div>
+      <div class="panel-body">
+        <div class="table-responsive">
+        <h3>
+          <table class="table">
+              <tr class="active">
+                <td>Id</td>
+                <td>Curso</td>
+                <td>Duração</td>
+                <td width="100"></td>              
+                <td width="100"></td>
+              </tr>
+  
+              <tr *ngFor="let curso of cursos" >
+                  <td><input type="text" value="{{ curso.id }}"disabled></td>
+                  <td><input type="text" value="{{ curso.nome }}" ></td>
+                  <td><input type="text" value="{{ curso.duracao }}" ></td>
+                  <td><button class="btn btn-info"><h3>Alterar</h3></button></td>              
+                  <td><button class="btn btn-danger" (click)="deleteCurso(curso.id)"><h3>Excluir</h3></button></td>
+              </tr>
+              
+            </table>
+          </h3>
+          </div>
+      </div>
+    </div>
+  
