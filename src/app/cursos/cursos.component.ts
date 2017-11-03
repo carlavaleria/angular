@@ -56,6 +56,14 @@ export class CursosComponent implements OnInit {
         }
       );
     }
-    
+    alterarCursos(id, nomeInput, duracaoInput){
+      this.http.get('http://localhost:8080/alterarCursos/'
+      +id+'/'+nomeInput+'/'+duracaoInput).subscribe(
+        data => {
+          this.cursos = data;
+        }
+      )
+    }
+
   
   }

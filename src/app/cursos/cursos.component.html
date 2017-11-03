@@ -40,11 +40,12 @@
               </tr>
   
               <tr *ngFor="let curso of cursos" >
-                  <td><input type="text" value="{{ curso.id }}"disabled></td>
-                  <td><input type="text" value="{{ curso.nome }}" ></td>
-                  <td><input type="text" value="{{ curso.duracao }}" ></td>
-                  <td><button class="btn btn-info"><h3>Alterar</h3></button></td>              
+                  <td><input type="text" value="{{ curso.id }}" disabled></td>
+                  <td><input type="text" value="{{ curso.nome }}" #nomeInput></td>
+                  <td><input type="text" value="{{ curso.duracao }}" #duracaoInput></td>              
                   <td><button class="btn btn-danger" (click)="deleteCurso(curso.id)"><h3>Excluir</h3></button></td>
+                  <td><button type="button" class="btn btn-warning" (click)="alterarCursos(curso.id
+                    , nomeInput.value, duracaoInput.value)"><h3>Alterar</h3></button></td>
               </tr>
               
             </table>
