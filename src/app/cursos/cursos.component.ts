@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 
 @Component({
@@ -21,18 +21,20 @@ export class CursosComponent implements OnInit {
     return this.listarCursos();
     }
     
-    adicionarCurso(form): void{
-      this.http.get
-      ('http://localhost:8080/adicionarCursos/'+this.nome+'/'+this.duracao)
-      .subscribe(
-        data => {
-
-          this.cursos = data;
-          console.log(data);
-          this.nome = this.camposlimpos;
-          this.duracao = this.camposlimpos;
-        }
-      );
+    adicionarCurso(): void{
+      const curso = {
+        nome: this.nome,
+        duracao: this.duracao
+      };
+      
+        this.http.post
+          ('http://localhost:8080/adicionarCursos', curso)
+          .subscribe(
+            data => {
+              this.cursos = data;
+            }
+          );
+       
     }
 
     listarCursos(): void{
@@ -57,13 +59,18 @@ export class CursosComponent implements OnInit {
       );
     }
     alterarCursos(id, nomeInput, duracaoInput){
-      this.http.get('http://localhost:8080/alterarCursos/'
-      +id+'/'+nomeInput+'/'+duracaoInput).subscribe(
-        data => {
-          this.cursos = data;
-        }
-      )
-    }
+        const curso = {
+          id: id,
+          nome: nomeInput,
+          duracao: duracaoInput
+        };
+        this.http.put('http://localhost:8080/alterarCursos', curso)
+        .subscribe(
+            data => {
+              this.cursos = data;
+              console.log(data);
+            }
+          );
 
-  
+      }
   }
